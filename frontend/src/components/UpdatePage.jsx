@@ -124,7 +124,7 @@ const UpdatePage = () => {
                         </p>
                         {updateInfo?.check_failed && (
                             <p className="text-xs" style={{ color: 'var(--color-warning)', maxWidth: '360px' }}>
-                                {t('update.checkFailed', 'Не удалось проверить обновления на GitHub — «актуальная версия» может быть устаревшей. Обновитесь вручную: SSH → cd /var/www/orbitra && git pull')}
+                                {t('update.checkFailed', 'Не удалось проверить обновления на GitHub — «актуальная версия» может быть устаревшей. Обновитесь вручную: SSH → cd /var/www/lovley && git pull')}
                             </p>
                         )}
                         {/* The check is cached server-side (1h good / 10min failed).
@@ -391,7 +391,7 @@ const UpdatePage = () => {
                                     maxWidth: '100%',
                                     whiteSpace: 'nowrap'
                                 }}>
-                                    <code>cd /path/to/orbitra</code><br />
+                                    <code>cd /path/to/lovley</code><br />
                                     <code>git pull --ff-only origin main</code><br />
                                     <code>php composer.phar install --no-dev --prefer-dist --no-interaction --optimize-autoloader</code>
                                 </div>

@@ -23,7 +23,7 @@ const useDebounce = (value, delay) => {
     return debouncedValue;
 };
 
-// Map Orbitra UI language codes to BCP47 locale tags for date formatting.
+// Map Lovley UI language codes to BCP47 locale tags for date formatting.
 const LOCALE_TAGS = {
     ru: 'ru-RU', en: 'en-US', uk: 'uk-UA', es: 'es-ES',
     zh: 'zh-CN', fr: 'fr-FR', de: 'de-DE'

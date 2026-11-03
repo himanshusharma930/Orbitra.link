@@ -74,7 +74,7 @@ const CampaignReports = ({ campaignId, campaignName, onClose }) => {
             });
             if (res.data.status === 'success') {
                 setEntityStatus(prev => ({ ...prev, [entityId]: nextStatus }));
-                const target = entityType === 'tracker_campaign' ? 'Orbitra' : 'Ads Manager';
+                const target = entityType === 'tracker_campaign' ? 'Lovley' : 'Ads Manager';
                 setToggleNotice({
                     type: 'success',
                     text: `${formatDimensionLabel(dimKey)} ${entityId} → ${nextStatus} in ${target}`
@@ -979,7 +979,7 @@ const CampaignReports = ({ campaignId, campaignName, onClose }) => {
                                                                                 cursor: validEntityId && !busy ? 'pointer' : 'not-allowed'
                                                                             }}
                                                                             title={validEntityId
-                                                                                ? `${dimKey === 'campaign_id' ? 'Orbitra' : 'Facebook'} · ${paused ? t('automation.clickToResume') : t('automation.clickToPause')}`
+                                                                                ? `${dimKey === 'campaign_id' ? 'Lovley' : 'Facebook'} · ${paused ? t('automation.clickToResume') : t('automation.clickToPause')}`
                                                                                 : t('automation.invalidId')}
                                                                         >
                                                                             <span className="inline-block h-3 w-3 transform rounded-full bg-white shadow transition-transform" style={{ transform: paused ? 'translateX(2px)' : 'translateX(12px)' }} />

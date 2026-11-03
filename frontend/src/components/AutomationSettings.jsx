@@ -274,7 +274,7 @@ const AutomationSettings = () => {
     const bootstrapAge = formatAge(t, bootstrap?.age_seconds);
     const cronInstalled = Boolean(info?.cron_file_exists);
     const cronDirWritable = Boolean(info?.cron_dir_writable);
-    const cronFile = info?.cron_file || '/etc/cron.d/orbitra-backorder';
+    const cronFile = info?.cron_file || '/etc/cron.d/lovley-backorder';
     const phpUser = info?.php_user || 'www-data';
     const shellExecAllowed = Boolean(info?.shell_exec_allowed);
     const crontabPath = info?.crontab_path;
@@ -284,11 +284,11 @@ const AutomationSettings = () => {
 
     const cronFileInstallCmd = useMemo(() => {
         const script = info?.script_path || 'backorder_cron.php';
-        const log = info?.log_path || '/var/log/orbitra_backorder.log';
+        const log = info?.log_path || '/var/log/lovley_backorder.log';
         const line = `*/3 * * * * ${phpUser} php ${script} >> ${log} 2>&1`;
         return [
             `sudo tee ${cronFile} > /dev/null <<'EOF'`,
-            `# Orbitra backorder checks`,
+            `# Lovley backorder checks`,
             line,
             `EOF`
         ].join('\n');

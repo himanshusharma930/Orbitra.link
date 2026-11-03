@@ -291,7 +291,7 @@ const UsersPage = () => {
         }
     };
 
-    // Ready-to-paste Claude Desktop config for the Orbitra MCP server.
+    // Ready-to-paste Claude Desktop config for the Lovley MCP server.
     const buildMcpConfig = () => {
         const origin = (typeof window !== 'undefined' && window.location && window.location.origin)
             ? window.location.origin
@@ -300,7 +300,7 @@ const UsersPage = () => {
             mcpServers: {
                 orbitra: {
                     command: 'node',
-                    args: ['/absolute/path/to/Orbitra/mcp/src/index.js'],
+                    args: ['/absolute/path/to/Lovley/mcp/src/index.js'],
                     env: {
                         ORBITRA_URL: origin,
                         ORBITRA_API_KEY: '<your-api-key>'
@@ -808,7 +808,7 @@ const UsersPage = () => {
                             <div style={{
                                 fontSize: '12px', color: 'var(--color-text-muted)', marginBottom: '10px', lineHeight: 1.5
                             }}>
-                                {t('users.apiKeyHint', 'Read keys allow analytics only. Write keys also allow managing campaigns/offers/domains — used by the Orbitra MCP server for AI assistants (see mcp/README.md).')}
+                                {t('users.apiKeyHint', 'Read keys allow analytics only. Write keys also allow managing campaigns/offers/domains — used by the Lovley MCP server for AI assistants (see mcp/README.md).')}
                             </div>
                             <div className="flex gap-2">
                                 <button

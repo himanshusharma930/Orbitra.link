@@ -1585,7 +1585,7 @@ const Domains = ({ campaigns, user }) => {
                                                     type="text"
                                                     value={formData.custom_ssl_cert}
                                                     onChange={e => setFormData({ ...formData, custom_ssl_cert: e.target.value })}
-                                                    placeholder="/etc/orbitra/ssl/cloudflare_origin.crt"
+                                                    placeholder="/etc/lovley/ssl/cloudflare_origin.crt"
                                                     className="form-input form-input-sm"
                                                     style={{ fontSize: '12px', fontFamily: 'monospace' }}
                                                 />
@@ -1598,7 +1598,7 @@ const Domains = ({ campaigns, user }) => {
                                                     type="text"
                                                     value={formData.custom_ssl_key}
                                                     onChange={e => setFormData({ ...formData, custom_ssl_key: e.target.value })}
-                                                    placeholder="/etc/orbitra/ssl/cloudflare_origin.key"
+                                                    placeholder="/etc/lovley/ssl/cloudflare_origin.key"
                                                     className="form-input form-input-sm"
                                                     style={{ fontSize: '12px', fontFamily: 'monospace' }}
                                                 />

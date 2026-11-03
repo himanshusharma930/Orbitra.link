@@ -35,6 +35,9 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
         } else if (activeTab === 'crm') {
             setActiveSuiteModule('crm');
             localStorage.setItem('orbitra_suite_module', 'crm');
+        } else if (activeTab === 'cps') {
+            setActiveSuiteModule('cps');
+            localStorage.setItem('orbitra_suite_module', 'cps');
         } else {
             setActiveSuiteModule('tracker');
             localStorage.setItem('orbitra_suite_module', 'tracker');
@@ -50,6 +53,8 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
             setActiveTab('leadforge');
         } else if (mod === 'crm') {
             setActiveTab('crm');
+        } else if (mod === 'cps') {
+            setActiveTab('cps');
         }
     };
 
@@ -133,7 +138,7 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
                 <div className="flex items-center space-x-3 md:space-x-5 h-full">
                     {/* Logo / Brand */}
                     <div className="font-semibold text-xl mr-2 flex items-center cursor-pointer" onClick={() => setActiveTab('dashboard')} style={{ color: 'var(--color-text-primary)' }}>
-                        Orbitra<span style={{ color: 'var(--color-primary)' }}>.link</span>
+                        Lovley<span style={{ color: 'var(--color-primary)' }}>.link</span>
                     </div>
 
                     {/* Suite Switcher — icon-only capsule (~95px): the labels
@@ -147,7 +152,8 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
                         {[
                             { id: 'leadforge', label: t('suite.leadforge', 'LeadForge'), icon: <Zap size={14} /> },
                             { id: 'tracker', label: t('suite.tracker', 'Tracker'), icon: <BarChart3 size={14} /> },
-                            { id: 'crm', label: t('suite.crm', 'CRM'), icon: <Users size={14} /> }
+                            { id: 'crm', label: t('suite.crm', 'CRM'), icon: <Users size={14} /> },
+                            { id: 'cps', label: t('suite.cps', 'CPS & Rotation'), icon: <RefreshCw size={14} /> }
                         ].map((mod) => {
                             const isActive = activeSuiteModule === mod.id;
                             return (
@@ -343,7 +349,7 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
                     >
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                             <span className="font-semibold text-lg" style={{ color: 'var(--color-text-primary)' }}>
-                                Orbitra<span style={{ color: 'var(--color-primary)' }}>.link</span>
+                                Lovley<span style={{ color: 'var(--color-primary)' }}>.link</span>
                             </span>
                             <button onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--color-text-secondary)', padding: '4px' }}>
                                 <X size={20} />
@@ -359,7 +365,8 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }) => {
                                 {[
                                     { id: 'leadforge', label: 'LeadForge' },
                                     { id: 'tracker', label: 'Tracker' },
-                                    { id: 'crm', label: 'CRM' }
+                                    { id: 'crm', label: 'CRM' },
+                                    { id: 'cps', label: 'CPS' }
                                 ].map((mod) => {
                                     const isActive = activeSuiteModule === mod.id;
                                     return (

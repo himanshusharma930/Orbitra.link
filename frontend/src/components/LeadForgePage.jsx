@@ -1306,7 +1306,7 @@ const LeadForgePage = ({ setActiveTab, refreshData }) => {
                                     className="mt-0.5 rounded border-gray-300 text-[var(--color-primary)] focus:ring-[var(--color-primary)]"
                                 />
                                 <span style={{ color: 'var(--color-text-primary)' }}>
-                                    {t('leadforge.optInjectAdapter', 'Inject Orbitra JS Adapter & ClickID Bridge')}
+                                    {t('leadforge.optInjectAdapter', 'Inject Lovley JS Adapter & ClickID Bridge')}
                                 </span>
                             </label>
 

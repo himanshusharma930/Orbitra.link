@@ -243,7 +243,7 @@ const Login = ({ onLogin }) => {
             >
                 <div className="text-center">
                     <h2 className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
-                        Orbitra<span style={{ color: 'var(--color-primary)' }}>.link</span>
+                        Lovley<span style={{ color: 'var(--color-primary)' }}>.link</span>
                     </h2>
                     <p className="text-sm mt-2" style={{ color: 'var(--color-text-secondary)' }}>
                         {t('login.flowTitle')}
@@ -270,7 +270,7 @@ const Login = ({ onLogin }) => {
                     {/* Logo */}
                     <div className="text-center mb-8">
                         <h1 className="text-3xl font-bold text-[var(--color-text-primary)] flex justify-center items-center">
-                            <span className="text-[var(--color-primary)] mr-1">Orbitra</span>.link
+                            <span className="text-[var(--color-primary)] mr-1">Lovley</span>.link
                         </h1>
                         <p className="text-[var(--color-text-secondary)] mt-2">{t('login.subtitle')}</p>
                     </div>
@@ -400,7 +400,7 @@ const Login = ({ onLogin }) => {
                     </div>
 
                     <p className="text-center text-[var(--color-text-secondary)] text-sm mt-3">
-                        © 2026 Orbitra.link. {t('login.allRightsReserved')}
+                        © 2026 Lovley.link. {t('login.allRightsReserved')}
                     </p>
                 </div>
 
