@@ -13,12 +13,12 @@ const McpPage = () => {
 
     const config = JSON.stringify({
         mcpServers: {
-            orbitra: {
+            lovley: {
                 // An absolute path, not bare "node": the desktop app is not launched
                 // from a shell, so a Node installed via nvm or Homebrew is not on its
                 // PATH and the server fails to start with no useful error.
                 command: '/usr/local/bin/node',
-                args: ['/absolute/path/to/Orbitra/mcp/src/index.js'],
+                args: ['/absolute/path/to/Lovley/mcp/src/index.js'],
                 env: {
                     ORBITRA_URL: origin,
                     ORBITRA_API_KEY: '<your-api-key>'

@@ -37,6 +37,7 @@ require_once __DIR__ . '/core/CloakDetector.php';
 require_once __DIR__ . '/core/geo_databases.php';
 require_once __DIR__ . '/core/LeadForge.php';
 require_once __DIR__ . '/core/CrmVault.php';
+require_once __DIR__ . '/core/CpsGateway.php';
 require_once __DIR__ . '/core/CloudDetector.php';
 require_once __DIR__ . '/core/DomainDnsResolver.php';
 require_once __DIR__ . '/core/server_ip.php';
@@ -6447,6 +6448,102 @@ try {
             header('Content-Length: ' . filesize($file));
             readfile($file);
             exit;
+
+        // === CPS & Rotation Gateway Endpoints ===
+        case 'cps_campaigns':
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $userRole = $_SESSION['role'] ?? 'user';
+                if ($userRole !== 'admin') {
+                    http_response_code(403);
+                    echo json_encode(['status' => 'error', 'message' => 'Admin privileges required to configure CPS campaigns']);
+                    break;
+                }
+                $rawBody = orbitraRequestBody();
+                $input = json_decode($rawBody, true);
+                if (!is_array($input)) {
+                    http_response_code(400);
+                    echo json_encode(['status' => 'error', 'message' => 'Malformed JSON body']);
+                    break;
+                }
+                $campaignId = trim((string)($input['name'] ?? $input['id'] ?? ''));
+                if ($campaignId === '') {
+                    $campaignId = 'camp_' . substr(bin2hex(random_bytes(6)), 0, 8);
+                }
+                $config = $input['campaign'] ?? $input;
+                $success = CpsGateway::saveCampaign($campaignId, $config);
+                if ($success) {
+                    echo json_encode(['status' => 'success', 'id' => $campaignId]);
+                } else {
+                    http_response_code(500);
+                    echo json_encode(['status' => 'error', 'message' => 'Failed to save campaign']);
+                }
+            } else {
+                echo json_encode(CpsGateway::getCampaigns());
+            }
+            break;
+
+        case 'cps_campaign_delete':
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'DELETE') {
+                http_response_code(405);
+                echo json_encode(['status' => 'error', 'message' => 'Method not allowed']);
+                break;
+            }
+            $userRole = $_SESSION['role'] ?? 'user';
+            if ($userRole !== 'admin') {
+                http_response_code(403);
+                echo json_encode(['status' => 'error', 'message' => 'Admin privileges required to delete CPS campaigns']);
+                break;
+            }
+            $rawBody = orbitraRequestBody();
+            $input = json_decode($rawBody, true);
+            $campaignName = trim((string)($_GET['name'] ?? $_GET['id'] ?? $input['name'] ?? $input['id'] ?? ''));
+            if ($campaignName === '') {
+                http_response_code(400);
+                echo json_encode(['status' => 'error', 'message' => 'Campaign name/ID is required']);
+                break;
+            }
+            $deleted = CpsGateway::deleteCampaign($campaignName);
+            echo json_encode(['status' => $deleted ? 'success' : 'error']);
+            break;
+
+        case 'cps_campaigns_status':
+            echo json_encode(CpsGateway::getCampaignStatus());
+            break;
+
+        case 'cps_proxies':
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $userRole = $_SESSION['role'] ?? 'user';
+                if ($userRole !== 'admin') {
+                    http_response_code(403);
+                    echo json_encode(['status' => 'error', 'message' => 'Admin privileges required to manage CPS proxies']);
+                    break;
+                }
+                $rawBody = orbitraRequestBody();
+                $input = json_decode($rawBody, true);
+                if (!is_array($input)) {
+                    http_response_code(400);
+                    echo json_encode(['status' => 'error', 'message' => 'Malformed JSON body']);
+                    break;
+                }
+                $proxies = $input['proxies'] ?? $input;
+                if (!is_array($proxies)) {
+                    http_response_code(400);
+                    echo json_encode(['status' => 'error', 'message' => 'Proxies must be an array']);
+                    break;
+                }
+                $saved = CpsGateway::saveProxies($proxies);
+                echo json_encode(['status' => $saved ? 'success' : 'error']);
+            } else {
+                echo json_encode(CpsGateway::getProxies());
+            }
+            break;
+
+        case 'cps_rotation_logs':
+            $limit = isset($_GET['lines']) ? (int)$_GET['lines'] : (isset($_GET['limit']) ? (int)$_GET['limit'] : 100);
+            $logs = CpsGateway::getRotationLogs($limit);
+            echo json_encode(['status' => 'success', 'logs' => $logs]);
+            break;
+
 
         // === Local offers: the same archive stack landings have ===
         // A local offer's files live in offers/<id>/ and are served by index.php

@@ -547,7 +547,7 @@ export default function PushBasePage({ user }) {
                             <span>
                                 {t('push.workerStalled')}
                                 <code className="block mt-1 select-all" style={{ fontSize: '12px' }}>
-                                    * * * * * php /var/www/orbitra/cli/push_cron.php --quiet &gt;&gt; /var/www/orbitra/var/logs/push.log 2&gt;&amp;1
+                                    * * * * * php /var/www/lovley/cli/push_cron.php --quiet &gt;&gt; /var/www/lovley/var/logs/push.log 2&gt;&amp;1
                                 </code>
                             </span>
                         </div>

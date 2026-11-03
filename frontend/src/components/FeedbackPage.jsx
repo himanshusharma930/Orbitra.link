@@ -7,7 +7,7 @@ import { copyToClipboard } from '../utils/clipboard';
 const partners = [
     {
         name: 'Pay2.House',
-        url: 'https://pay2.house/p/kc9oevv0?utm_source=orbitra',
+        url: 'https://pay2.house/p/kc9oevv0?utm_source=lovley',
         logo: '/partners/pay2house-logo.svg',
         descKey: 'feedback.partnerPay2houseDesc',
         logoChip: '#0F172A',
@@ -81,7 +81,7 @@ const FeedbackPage = () => {
 
                         {/* Email Button */}
                         <a
-                            href="mailto:info@orbitra.link"
+                            href="mailto:info@lovley.link"
                             className="flex items-center justify-between p-4 rounded-[16px] transition-all transform hover:-translate-y-1 hover:shadow-lg border"
                             style={{
                                 background: 'var(--color-bg-soft)',
@@ -94,7 +94,7 @@ const FeedbackPage = () => {
                                 </div>
                                 <div>
                                     <p className="font-semibold text-lg" style={{ color: 'var(--color-text-primary)' }}>Email</p>
-                                    <p className="text-sm font-medium" style={{ color: 'var(--color-text-secondary)' }}>info@orbitra.link</p>
+                                    <p className="text-sm font-medium" style={{ color: 'var(--color-text-secondary)' }}>info@lovley.link</p>
                                 </div>
                             </div>
                             <div className="opacity-50" style={{ color: 'var(--color-text-primary)' }}>
@@ -119,7 +119,7 @@ const FeedbackPage = () => {
                         </div>
 
                         <h2 className="text-2xl font-bold mb-4 relative z-10" style={{ color: 'var(--color-text-primary)' }}>
-                            {t('feedback.appreciationTitle') || 'Thanks for choosing Orbitra.link!'}
+                            {t('feedback.appreciationTitle') || 'Thanks for choosing Lovley.link!'}
                         </h2>
 
                         <p className="text-[15px] leading-relaxed relative z-10 mb-6" style={{ color: 'var(--color-text-secondary)' }}>

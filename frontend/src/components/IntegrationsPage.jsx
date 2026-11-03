@@ -883,7 +883,7 @@ const IntegrationsPage = () => {
     // preselected (Domains reads orbitra_nc_intent on mount).
     const openNcDialog = (accountId, mode) => {
         try { localStorage.setItem('orbitra_nc_intent', JSON.stringify({ account_id: accountId, mode })); } catch (e) { /* storage full/blocked */ }
-        window.dispatchEvent(new CustomEvent('orbitra:navigate', { detail: { tab: 'domains' } }));
+        window.dispatchEvent(new CustomEvent('lovley:navigate', { detail: { tab: 'domains' } }));
     };
 
     useEffect(() => {
@@ -3721,7 +3721,7 @@ const IntegrationsPage = () => {
             iconColor: '#f59e0b',
             title: t('extCosts.title', 'Dolphin / FBTool API'),
             subtitle: 'External upload & costs',
-            description: t('extCosts.description', 'Приём расходов из Dolphin и Fbtool.pro через Orbitra Automation API endpoint'),
+            description: t('extCosts.description', 'Приём расходов из Dolphin и Fbtool.pro через Lovley Automation API endpoint'),
             isConnected: true,
             statText: 'Admin API endpoint',
             ctaText: t('integrations.viewApiKeys', 'View API Keys'),
@@ -4120,7 +4120,7 @@ const IntegrationsPage = () => {
                                         <Monitor size={23} />
                                     </div>
                                     <h3 style={{ fontSize: '21px', fontWeight: 700, margin: 0 }}>
-                                        Orbitra {t('integrations.chromeExtension')} (Ads Manager Overlay)
+                                        Lovley {t('integrations.chromeExtension')} (Ads Manager Overlay)
                                     </h3>
                                 </div>
                                 <p style={{ margin: 0, color: '#ede9fe', fontSize: '14px', lineHeight: 1.6 }}>
@@ -4234,7 +4234,7 @@ const IntegrationsPage = () => {
                                 Summer Scale Campaign <span style={{ color: '#94a3b8', fontWeight: 500 }}>1203849102948</span>
                             </div>
                             <div style={{ display: 'inline-flex', flexWrap: 'wrap', alignItems: 'center', gap: '5px', padding: '6px 8px', marginLeft: '24px', borderRadius: '8px', background: 'linear-gradient(135deg,#151322,#211a38)', border: '1px solid rgba(139,92,246,.45)', boxShadow: '0 4px 14px rgba(15,23,42,.18)' }}>
-                                <span style={{ color: '#c4b5fd', fontSize: '10px', fontWeight: 700 }}>Orbitra</span>
+                                <span style={{ color: '#c4b5fd', fontSize: '10px', fontWeight: 700 }}>Lovley</span>
                                 {preview.map(([label, value], index) => (
                                     <React.Fragment key={label}>
                                         {index > 0 && <span style={{ color: '#64748b', fontSize: '10px' }}>|</span>}
@@ -4290,12 +4290,12 @@ const IntegrationsPage = () => {
     const generateWpPlugin = () => {
         const pluginPhp = `<?php
 /**
- * Plugin Name: Orbitra Tracker Integration
+ * Plugin Name: Lovley Tracker Integration
  * Plugin URI: ${trackerUrl}
- * Description: Integrate Orbitra Tracker - geo redirects, tracking pixels, banners, buttons, countdowns.
+ * Description: Integrate Lovley Tracker - geo redirects, tracking pixels, banners, buttons, countdowns.
  * Version: 1.1.0
- * Author: Orbitra
- * Text Domain: orbitra-tracker
+ * Author: Lovley
+ * Text Domain: lovley-tracker
  */
 
 if (!defined('ABSPATH')) exit;
@@ -4303,7 +4303,7 @@ if (!defined('ABSPATH')) exit;
 define('ORBITRA_TRACKER_URL', '${trackerUrl}');
 define('ORBITRA_TRACKER_VER', '1.1.0');
 
-class Orbitra_Tracker {
+class Lovley_Tracker {
     
     private static \\$instance = null;
     private \\$tracker_url;
@@ -4321,7 +4321,7 @@ class Orbitra_Tracker {
     }
     
     public function init() {
-        load_plugin_textdomain('orbitra-tracker', false, dirname(plugin_basename(__FILE__)) . '/languages');
+        load_plugin_textdomain('lovley-tracker', false, dirname(plugin_basename(__FILE__)) . '/languages');
         
         add_shortcode('orbitra_link', array(\\$this, 'shortcode_link'));
         add_shortcode('orbitra_banner', array(\\$this, 'shortcode_banner'));
@@ -4340,9 +4340,9 @@ class Orbitra_Tracker {
     }
     
     public function enqueue_assets() {
-        wp_register_style('orbitra-tracker', false);
-        wp_enqueue_style('orbitra-tracker');
-        wp_add_inline_style('orbitra-tracker', '
+        wp_register_style('lovley-tracker', false);
+        wp_enqueue_style('lovley-tracker');
+        wp_add_inline_style('lovley-tracker', '
             .orbitra-btn{display:inline-block;padding:14px 32px;font-weight:600;text-decoration:none;text-align:center;cursor:pointer;transition:all .2s ease;box-shadow:0 2px 8px rgba(0,0,0,.15)}
             .orbitra-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.2);filter:brightness(1.1)}
             .orbitra-btn-sm{padding:10px 20px;font-size:14px}
@@ -4350,7 +4350,7 @@ class Orbitra_Tracker {
         ');
     }
     
-    // [orbitra_link campaign_id="1" text="Click Here" text_uk="Натисни" text_ru="Жми" geo_redirect="RU:https://offer1.com,DE:https://offer2.com"]
+    // [lovley_link campaign_id="1" text="Click Here" text_uk="Натисни" text_ru="Жми" geo_redirect="RU:https://offer1.com,DE:https://offer2.com"]
     public function shortcode_link(\\$atts, \\$content = null) {
         \\$raw_atts = (array) \\$atts;
         \\$atts = shortcode_atts(array(
@@ -4397,7 +4397,7 @@ class Orbitra_Tracker {
             esc_url(\\$click_url), esc_attr(\\$atts['class']), esc_attr(\\$atts['target']), esc_html(\\$text));
     }
     
-    // [orbitra_banner campaign_id="1" image="https://..." width="300" height="250"]
+    // [lovley_banner campaign_id="1" image="https://..." width="300" height="250"]
     public function shortcode_banner(\\$atts) {
         \\$atts = shortcode_atts(array(
             'campaign_id' => '',
@@ -4416,7 +4416,7 @@ class Orbitra_Tracker {
             esc_attr(\\$atts['width']), esc_attr(\\$atts['height']));
     }
     
-    // [orbitra_button campaign_id="1" text="PLAY NOW" text_uk="Грати" text_ru="Играть" text_de="Spielen" bg="#22c55e" color="#fff" radius="8" size="md"]
+    // [lovley_button campaign_id="1" text="PLAY NOW" text_uk="Грати" text_ru="Играть" text_de="Spielen" bg="#22c55e" color="#fff" radius="8" size="md"]
     public function shortcode_button(\\$atts) {
         \\$raw_atts = (array) \\$atts;
         \\$atts = shortcode_atts(array(
@@ -4461,7 +4461,7 @@ class Orbitra_Tracker {
             esc_url(\\$click_url), esc_attr(\\$size_class), esc_attr(\\$atts['target']), \\$style, \\$icon_html, esc_html(\\$text));
     }
     
-    // [orbitra_if_geo countries="RU,DE,ES"]Content here[/orbitra_if_geo]
+    // [lovley_if_geo countries="RU,DE,ES"]Content here[/lovley_if_geo]
     public function shortcode_if_geo(\\$atts, \\$content = null) {
         \\$atts = shortcode_atts(array('countries' => '', 'exclude' => ''), \\$atts);
         if (empty(\\$atts['countries']) && empty(\\$atts['exclude'])) return \\$content;
@@ -4480,7 +4480,7 @@ class Orbitra_Tracker {
         return do_shortcode(\\$content);
     }
     
-    // [orbitra_countdown campaign_id="1" hours="2" redirect="https://offer.com" text="OFFER EXPIRES IN" text_ru="ПРЕДЛОЖЕНИЕ ИСТЕКАЕТ" button="GET OFFER NOW" button_uk="Забрати" button_ru="Забрать"]
+    // [lovley_countdown campaign_id="1" hours="2" redirect="https://offer.com" text="OFFER EXPIRES IN" text_ru="ПРЕДЛОЖЕНИЕ ИСТЕКАЕТ" button="GET OFFER NOW" button_uk="Забрати" button_ru="Забрать"]
     public function shortcode_countdown(\\$atts) {
         \\$raw_atts = (array) \\$atts;
         \\$atts = shortcode_atts(array(
@@ -4512,18 +4512,18 @@ class Orbitra_Tracker {
     }
     
     public function tracking_pixel() {
-        \\$campaign_id = get_option('orbitra_tracking_campaign', '');
+        \\$campaign_id = get_option('lovley_tracking_campaign', '');
         if (empty(\\$campaign_id)) return;
         echo '<img src="' . esc_url(\\$this->tracker_url . '/click.php?campaign_id=' . \\$campaign_id . '&redirect=0') . '" width="1" height="1" style="display:none;" alt="" />';
     }
     
     /**
-     * Get visitor geo using client IP -> Orbitra API.
+     * Get visitor geo using client IP -> Lovley API.
      * Uses WordPress Transients for caching (no session_start needed).
      */
     private function get_visitor_geo() {
         \\$ip = \\$this->get_client_ip();
-        \\$cache_key = 'orbitra_geo_' . md5(\\$ip);
+        \\$cache_key = 'lovley_geo_' . md5(\\$ip);
         
         \\$cached = get_transient(\\$cache_key);
         if (\\$cached !== false) return \\$cached;
@@ -4556,7 +4556,7 @@ class Orbitra_Tracker {
      * Supports ANY WordPress locale: text_uk, text_ru, text_de, text_fr, text_es, etc.
      * Falls back to default text if no matching locale found.
      *
-     * Example: [orbitra_button text="PLAY NOW" text_uk="Грати" text_ru="Играть" text_de="Spielen"]
+     * Example: [lovley_button text="PLAY NOW" text_uk="Грати" text_ru="Играть" text_de="Spielen"]
      */
     private function get_localized_text(\\$raw_atts, \\$prefix, \\$default) {
         \\$locale = strtolower(substr(get_locale(), 0, 2));
@@ -4589,19 +4589,19 @@ class Orbitra_Tracker {
     }
     
     public function admin_menu() {
-        add_options_page('Orbitra Tracker', 'Orbitra Tracker', 'manage_options', 'orbitra-tracker', array(\\$this, 'admin_page'));
+        add_options_page('Lovley Tracker', 'Lovley Tracker', 'manage_options', 'lovley-tracker', array(\\$this, 'admin_page'));
     }
     
     public function admin_init() {
-        register_setting('orbitra_tracker', 'orbitra_tracking_campaign');
-        register_setting('orbitra_tracker', 'orbitra_default_campaign');
+        register_setting('orbitra_tracker', 'lovley_tracking_campaign');
+        register_setting('orbitra_tracker', 'lovley_default_campaign');
     }
     
     public function admin_page() {
         ?>
         <div class="wrap">
             <h1 style="display:flex;align-items:center;gap:8px;">
-                <span style="background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">Orbitra</span> Tracker
+                <span style="background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">Lovley</span> Tracker
             </h1>
             
             <div style="background:#fff;border:1px solid #ccd0d4;border-radius:8px;padding:20px;margin:20px 0;max-width:700px;">
@@ -4627,7 +4627,7 @@ class Orbitra_Tracker {
                         <tr>
                             <th>Campaign ID</th>
                             <td>
-                                <input type="number" name="orbitra_tracking_campaign" value="<?php echo esc_attr(get_option('orbitra_tracking_campaign', '')); ?>" class="regular-text" placeholder="Leave empty to disable">
+                                <input type="number" name="lovley_tracking_campaign" value="<?php echo esc_attr(get_option('lovley_tracking_campaign', '')); ?>" class="regular-text" placeholder="Leave empty to disable">
                                 <p class="description">Automatic tracking pixel on all pages of this site.</p>
                             </td>
                         </tr>
@@ -4642,23 +4642,23 @@ class Orbitra_Tracker {
                     <thead><tr><th>Shortcode</th><th>Description</th></tr></thead>
                     <tbody>
                         <tr>
-                            <td><code>[orbitra_link campaign_id="1" text="Click"]</code></td>
+                            <td><code>[lovley_link campaign_id="1" text="Click"]</code></td>
                             <td>Trackable link. Supports <code>geo_redirect="RU:url,DE:url"</code>, <code>text_ru=""</code>, <code>text_en=""</code></td>
                         </tr>
                         <tr>
-                            <td><code>[orbitra_button campaign_id="1" text="Get Offer"]</code></td>
+                            <td><code>[lovley_button campaign_id="1" text="Get Offer"]</code></td>
                             <td>Styled CTA button. Options: <code>bg="#22c55e"</code>, <code>color="#fff"</code>, <code>radius="8"</code>, <code>size="sm|md|lg"</code>, <code>full_width="true"</code>, <code>icon="🔥"</code>, <code>text_ru=""</code>, <code>text_en=""</code></td>
                         </tr>
                         <tr>
-                            <td><code>[orbitra_banner campaign_id="1" image="url"]</code></td>
+                            <td><code>[lovley_banner campaign_id="1" image="url"]</code></td>
                             <td>Trackable image banner. Options: <code>width</code>, <code>height</code>, <code>alt</code></td>
                         </tr>
                         <tr>
-                            <td><code>[orbitra_if_geo countries="RU,DE"]...[/orbitra_if_geo]</code></td>
+                            <td><code>[lovley_if_geo countries="RU,DE"]...[/lovley_if_geo]</code></td>
                             <td>Show content only for specific countries. Also supports <code>exclude="US,GB"</code></td>
                         </tr>
                         <tr>
-                            <td><code>[orbitra_countdown campaign_id="1" hours="2"]</code></td>
+                            <td><code>[lovley_countdown campaign_id="1" hours="2"]</code></td>
                             <td>Countdown timer with CTA. Options: <code>text</code>, <code>button</code>, <code>redirect</code>, <code>bg</code>, <code>button_bg</code>, multilingual <code>text_ru</code>, <code>button_ru</code></td>
                         </tr>
                     </tbody>
@@ -4673,10 +4673,10 @@ class Orbitra_Tracker {
     }
 }
 
-Orbitra_Tracker::get_instance();
+Lovley_Tracker::get_instance();
 `;
 
-        const readmeTxt = `=== Orbitra Tracker Integration ===
+        const readmeTxt = `=== Lovley Tracker Integration ===
 Contributors: orbitra
 Tags: tracker, affiliate, geo, redirect, banner, button
 Requires at least: 5.0
@@ -4684,11 +4684,11 @@ Tested up to: 6.5
 Stable tag: 1.1.0
 License: GPLv2 or later
 
-Integrate Orbitra Tracker with WordPress - geo redirects, tracking pixels, banners, buttons, countdowns.
+Integrate Lovley Tracker with WordPress - geo redirects, tracking pixels, banners, buttons, countdowns.
 
 == Description ==
 
-This plugin integrates your WordPress site with Orbitra Tracker installed at: ${trackerUrl}
+This plugin integrates your WordPress site with Lovley Tracker installed at: ${trackerUrl}
 
 Features:
 * Geo-based redirects - show different offers per country
@@ -4703,60 +4703,60 @@ Features:
 
 = orbitra_link =
 Trackable link with optional geo-redirect.
-[orbitra_link campaign_id="1" text="Click" text_ru="Нажми" geo_redirect="RU:https://...,DE:https://..."]
+[lovley_link campaign_id="1" text="Click" text_ru="Нажми" geo_redirect="RU:https://...,DE:https://..."]
 
 = orbitra_button =
 Styled CTA button with design options.
-[orbitra_button campaign_id="1" text="Get Offer" text_ru="Получить" bg="#22c55e" size="lg" icon="🔥"]
+[lovley_button campaign_id="1" text="Get Offer" text_ru="Получить" bg="#22c55e" size="lg" icon="🔥"]
 
 = orbitra_banner =
 Responsive trackable banner image.
-[orbitra_banner campaign_id="1" image="https://..." width="728" height="90"]
+[lovley_banner campaign_id="1" image="https://..." width="728" height="90"]
 
 = orbitra_if_geo =
 Show content only for specific countries.
-[orbitra_if_geo countries="RU,DE"]Content here[/orbitra_if_geo]
+[lovley_if_geo countries="RU,DE"]Content here[/lovley_if_geo]
 
 = orbitra_countdown =
 Countdown timer with CTA button.
-[orbitra_countdown campaign_id="1" hours="2" redirect="https://..." button_ru="Забрать"]
+[lovley_countdown campaign_id="1" hours="2" redirect="https://..." button_ru="Забрать"]
 
 == Installation ==
 
 1. Upload plugin folder to /wp-content/plugins/
 2. Activate the plugin
-3. Go to Settings > Orbitra Tracker
+3. Go to Settings > Lovley Tracker
 4. Test connection and configure tracking
 `;
 
         const uninstallPhp = `<?php
 /**
- * Orbitra Tracker - Uninstall
+ * Lovley Tracker - Uninstall
  * Cleans up plugin data on uninstall.
  */
 if (!defined('WP_UNINSTALL_PLUGIN')) exit;
 
-delete_option('orbitra_tracking_campaign');
-delete_option('orbitra_default_campaign');
+delete_option('lovley_tracking_campaign');
+delete_option('lovley_default_campaign');
 
 // Clean up geo transients
 global \$wpdb;
-\$wpdb->query("DELETE FROM " . \$wpdb->prefix . "options WHERE option_name LIKE '_transient_orbitra_geo_%' OR option_name LIKE '_transient_timeout_orbitra_geo_%'");
+\$wpdb->query("DELETE FROM " . \$wpdb->prefix . "options WHERE option_name LIKE '_transient_lovley_geo_%' OR option_name LIKE '_transient_timeout_lovley_geo_%'");
 `;
 
         // Create ZIP file
         const JSZip = window.JSZip;
         if (JSZip) {
             const zip = new JSZip();
-            const folder = zip.folder('orbitra-tracker');
-            folder.file('orbitra-tracker.php', pluginPhp);
+            const folder = zip.folder('lovley-tracker');
+            folder.file('lovley-tracker.php', pluginPhp);
             folder.file('readme.txt', readmeTxt);
             folder.file('uninstall.php', uninstallPhp);
             zip.generateAsync({ type: 'blob' }).then(content => {
                 const url = URL.createObjectURL(content);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'orbitra-tracker.zip';
+                a.download = 'lovley-tracker.zip';
                 a.click();
                 URL.revokeObjectURL(url);
             });
@@ -4766,7 +4766,7 @@ global \$wpdb;
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'orbitra-tracker.php';
+            a.download = 'lovley-tracker.php';
             a.click();
             URL.revokeObjectURL(url);
         }
@@ -4850,11 +4850,11 @@ global \$wpdb;
                     </h4>
                     <div className="space-y-3" style={{ fontSize: '13px' }}>
                         {[
-                            { code: '[orbitra_link campaign_id="1" text="Click" text_uk="Тисни" text_ru="Жми" geo_redirect="RU:https://..."]', desc: t('wpPlugin.shortcodeLink') },
-                            { code: '[orbitra_button campaign_id="1" text_uk="Грати" text_ru="Играть" text_de="Spielen" bg="#22c55e" size="lg"]', desc: t('wpPlugin.shortcodeButton') || 'Styled CTA button with design and multilingual support' },
-                            { code: '[orbitra_banner campaign_id="1" image="https://..."]', desc: t('wpPlugin.shortcodeBanner') },
-                            { code: '[orbitra_if_geo countries="RU,DE"]...[/orbitra_if_geo]', desc: t('wpPlugin.shortcodeGeo') },
-                            { code: '[orbitra_countdown campaign_id="1" hours="2" button_uk="Забрати" button_ru="Забрать"]', desc: t('wpPlugin.shortcodeCountdown') },
+                            { code: '[lovley_link campaign_id="1" text="Click" text_uk="Тисни" text_ru="Жми" geo_redirect="RU:https://..."]', desc: t('wpPlugin.shortcodeLink') },
+                            { code: '[lovley_button campaign_id="1" text_uk="Грати" text_ru="Играть" text_de="Spielen" bg="#22c55e" size="lg"]', desc: t('wpPlugin.shortcodeButton') || 'Styled CTA button with design and multilingual support' },
+                            { code: '[lovley_banner campaign_id="1" image="https://..."]', desc: t('wpPlugin.shortcodeBanner') },
+                            { code: '[lovley_if_geo countries="RU,DE"]...[/lovley_if_geo]', desc: t('wpPlugin.shortcodeGeo') },
+                            { code: '[lovley_countdown campaign_id="1" hours="2" button_uk="Забрати" button_ru="Забрать"]', desc: t('wpPlugin.shortcodeCountdown') },
                         ].map((s, i) => (
                             <div key={i} style={{ padding: '12px', background: 'var(--color-bg-card)', borderRadius: '8px', border: '1px solid var(--color-border)' }}>
                                 <code style={{ color: 'var(--color-primary)', display: 'block', marginBottom: '4px', wordBreak: 'break-all' }}>{s.code}</code>
@@ -4901,7 +4901,7 @@ global \$wpdb;
             notes.push({
                 tone: d.poll_stale ? 'warn' : 'info',
                 text: d.poll_stale ? t('telegram.pollStale') : t('telegram.pollActive'),
-                hint: d.poll_stale ? 'php /var/www/orbitra/telegram_poll_cron.php --once' : (d.poll_last_run || '')
+                hint: d.poll_stale ? 'php /var/www/lovley/telegram_poll_cron.php --once' : (d.poll_last_run || '')
             });
             if (d.poll_last_error) {
                 notes.push({ tone: 'warn', text: d.poll_last_error });

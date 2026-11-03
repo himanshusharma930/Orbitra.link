@@ -27,6 +27,7 @@ import GeoDbBanner from './components/GeoDbBanner';
 import DashboardSettingsModal from './components/DashboardSettingsModal';
 import LeadForgePage from './components/LeadForgePage';
 import CRMPage from './components/CRMPage';
+import CpsPage from './components/CpsPage';
 import GalleryPage from './components/GalleryPage';
 import PushBasePage from './components/PushBasePage';
 import { canAccessTab, firstAllowedTab } from './utils/permissions';
@@ -104,7 +105,8 @@ function App() {
       'simulation',
       'logs',
       'leadforge',
-      'crm'
+      'crm',
+      'cps'
     ]);
 
     if (baseTabs.has(tab)) return tab;
@@ -520,7 +522,7 @@ function App() {
     return (
       <div className="ob-boot ob-boot--inline" role="status" aria-live="polite">
         <div className="ob-boot-orbit"><span className="ob-boot-dot"></span></div>
-        <div className="ob-boot-mark">Orbitra<span className="ob-boot-tld">.link</span></div>
+        <div className="ob-boot-mark">Lovley<span className="ob-boot-tld">.link</span></div>
         <div className="ob-boot-bar"><span></span></div>
         <div className="ob-boot-caption">LOADING</div>
       </div>
@@ -553,7 +555,7 @@ function App() {
           <>
             {/* CRM and LeadForge carry their own hero headers with actions —
                 rendering this generic h1 on top duplicated the title twice. */}
-            {!['leadforge', 'crm'].includes(activeTab) && (
+            {!['leadforge', 'crm', 'cps'].includes(activeTab) && (
             <div className="flex justify-between items-center mb-2">
               <h1 className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
                 {activeTab === 'dashboard' && t('app.dashboard')}
@@ -691,6 +693,10 @@ function App() {
                 setEditingCampaignId={setEditingCampaignId}
                 user={user}
               />
+            )}
+
+            {activeTab === 'cps' && (
+              <CpsPage />
             )}
 
             {activeTab === 'landings' && (

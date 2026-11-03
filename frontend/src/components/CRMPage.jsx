@@ -185,7 +185,7 @@ const CRMPage = ({ setActiveTab, user }) => {
         const encodedUri = encodeURI(csvContent);
         const link = document.createElement('a');
         link.setAttribute('href', encodedUri);
-        link.setAttribute('download', `orbitra_crm_leads_${new Date().toISOString().slice(0, 10)}.csv`);
+        link.setAttribute('download', `lovley_crm_leads_${new Date().toISOString().slice(0, 10)}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

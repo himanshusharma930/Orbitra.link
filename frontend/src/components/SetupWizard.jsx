@@ -119,7 +119,7 @@ const SetupWizard = ({ onComplete }) => {
                 {/* Logo */}
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-white flex justify-center items-center">
-                        <span className="text-indigo-500 mr-1">Orbitra</span>.link
+                        <span className="text-indigo-500 mr-1">Lovley</span>.link
                     </h1>
                     <p className="text-slate-400 mt-2">{t('setup.title')}</p>
                 </div>
@@ -350,7 +350,7 @@ const SetupWizard = ({ onComplete }) => {
                 )}
 
                 <p className="text-center text-slate-500 text-sm mt-6">
-                    © 2026 Orbitra.link
+                    © 2026 Lovley.link
                 </p>
             </div>
         </div>

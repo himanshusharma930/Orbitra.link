@@ -77,3 +77,10 @@ data/tracker.db
 
 # One-off browser probe scripts from verification sessions
 /tmp_*.js
+
+# CPS
+/data/cps/
+/cps/results/
+/cps/node_modules/
+/cps/*.log
+/cps/.env.production

@@ -248,7 +248,7 @@ const SystemSettings = () => {
                             <div style={{ fontSize: '13px', lineHeight: 1.5 }}>
                                 <div>{t('systemSettings.adminPathWarning')}</div>
                                 <code style={{ display: 'inline-block', marginTop: '6px' }}>
-                                    php /var/www/orbitra/cli/admin_path.php reset
+                                    php /var/www/lovley/cli/admin_path.php reset
                                 </code>
                             </div>
                         </div>

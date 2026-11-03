@@ -426,7 +426,7 @@ ORDER BY table_name;
 
 TABLES=$(mariadb --defaults-extra-file=/root/keitaro-mariadb.cnf -N -e "$SQL_LIST" "$MARIADB_KEITARO_DATABASE" | tr "\\n" " ")
 
-OUT="/root/keitaro_orbitra_full.sql.gz"
+OUT="/root/keitaro_lovley_full.sql.gz"
 echo "Dumping tables: $TABLES"
 mysqldump --defaults-extra-file=/root/keitaro-mariadb.cnf \\
   --single-transaction --quick --skip-lock-tables \\
@@ -490,13 +490,13 @@ echo "DONE: $OUT"
                                             fontFamily: 'monospace'
                                         }}>
 {`# Download to the current folder:
-scp root@YOUR_KEITARO_SERVER_IP:/root/keitaro_orbitra_full.sql.gz .
+scp root@YOUR_KEITARO_SERVER_IP:/root/keitaro_lovley_full.sql.gz .
 
 # Download to Downloads (macOS/Linux):
-scp root@YOUR_KEITARO_SERVER_IP:/root/keitaro_orbitra_full.sql.gz ~/Downloads/
+scp root@YOUR_KEITARO_SERVER_IP:/root/keitaro_lovley_full.sql.gz ~/Downloads/
 
 # Download to Downloads (Windows PowerShell):
-scp root@YOUR_KEITARO_SERVER_IP:/root/keitaro_orbitra_full.sql.gz $env:USERPROFILE\\Downloads\\`}
+scp root@YOUR_KEITARO_SERVER_IP:/root/keitaro_lovley_full.sql.gz $env:USERPROFILE\\Downloads\\`}
                                         </code>
                                     </div>
                                 </div>
